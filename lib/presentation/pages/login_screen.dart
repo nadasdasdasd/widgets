@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -38,6 +39,18 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final formKey = GlobalKey<FormState>();
   final List<String> _kOption = ['nada', 'nisrina', 'septiana'];
+  TextEditingController controller = TextEditingController(text: 'no name');
+
+  void saveData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('name', controller.text);
+  }
+
+  Future<String> getData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getString('name') ?? 'no name';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -67,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
                 VoidCallback onFieldSubmitted,
               ) {
                 return TextField(
-                  controller: textEditingController,
+                  controller: controller,
                   focusNode: focusNode,
                   decoration: const InputDecoration(
                     labelText: 'Search',
@@ -100,7 +113,19 @@ class _LoginFormState extends State<LoginForm> {
             ),
           ),
         ),
-        const ElevatedButton(onPressed: null, child: Text('submit'))
+        ElevatedButton(
+            onPressed: () {
+              getData().then((s) {
+                controller.text = s;
+                setState(() {});
+              });
+            },
+            child: const Text('load')),
+        ElevatedButton(
+            onPressed: () {
+              saveData();
+            },
+            child: const Text('save'))
       ],
     ));
   }

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:nada_case5/main.dart';
+import 'package:widgets/presentation/pages/api_screen.dart';
 import 'package:widgets/presentation/pages/home_screen.dart';
 import 'package:widgets/presentation/pages/loaders_screen.dart';
 import 'package:widgets/presentation/pages/login_screen.dart';
 import 'package:widgets/presentation/pages/not_found_screen.dart';
 import 'package:widgets/presentation/pages/paint_widget_screen.dart';
+import 'package:widgets/presentation/pages/typography_screen.dart';
 import 'package:widgets/presentation/pages/widget_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp(
     title: "mini project",
   ));
@@ -44,6 +48,9 @@ class _MyAppState extends State<MyApp> {
         '/login': (context) => const LoginPage(),
         '/loaders': (context) => const LoadersPage(),
         '/paint': (context) => const PaintWidgetPage(),
+        '/typography': (context) => const TypographyPage(),
+        '/apiPage': (context) => const ApiPage(),
+        '/changeNotifier': (context) => const ChangeNotifierExamplePage()
       },
       onGenerateRoute: (settings) {
         // Handle unknown routes

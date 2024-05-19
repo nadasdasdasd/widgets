@@ -43,6 +43,26 @@ class _MyWidgetState extends State<MyWidgetPage> {
                 textButton: 'paint widget',
                 onTap: () {
                   Navigator.pushNamed(context, '/paint');
+                }),
+            ButtonWidget(
+                textButton: 'typography widget',
+                onTap: () {
+                  Navigator.pushNamed(context, '/typography');
+                }),
+            ButtonWidget(
+                textButton: 'typography widget',
+                onTap: () {
+                  Navigator.pushNamed(context, '/typography');
+                }),
+            ButtonWidget(
+                textButton: 'api widget',
+                onTap: () {
+                  Navigator.pushNamed(context, '/apiPage');
+                }),
+            ButtonWidget(
+                textButton: 'change notifier widget',
+                onTap: () {
+                  Navigator.pushNamed(context, '/changeNotifier');
                 })
           ]),
         ));
